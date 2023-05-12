@@ -50,7 +50,6 @@ public class MyGdxGame extends ApplicationAdapter {
 		if (!heart.isGameOver()) {
 			heart.draw(batch);
 			rocket.draw(batch);
-			System.out.println(score);
 			font.draw(batch, "" + score, 5, Utils.SCREEN_HEIGHT-45);
 
 			ArrayList<Bullet> bullets = rocket.getBullets();
@@ -83,6 +82,10 @@ public class MyGdxGame extends ApplicationAdapter {
 
 			for (Asteroids asteroid : asteroids) {
 				if (rocket.overlaps(asteroid)) {
+					if (heart.isGameOver()) {
+						batch.end();
+						return;
+					}
 					heart.decrease();
 					rocket.respawn();
 				}
@@ -94,12 +97,11 @@ public class MyGdxGame extends ApplicationAdapter {
 					bullets.remove(i);
 				}
 			}
-
 		} else {
 			String message = "GAME OVER!\nScore: " + score + "\n\n(Pressione espaço para reiniciar)";
 			font.draw(batch, message, Utils.SCREEN_WIDTH/2-80, Utils.SCREEN_HEIGHT/2+30);
-			gameOver();
 			score = 0;
+			gameOver();
 			if (Gdx.input.isKeyJustPressed(Keys.SPACE)) {
 				heart.reset(3);
 			}
