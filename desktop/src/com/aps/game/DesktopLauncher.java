@@ -9,7 +9,7 @@ public class DesktopLauncher {
 		Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
 		config.setForegroundFPS(60);
 		config.setTitle("APS");
-		config.setWindowedMode(640, 480);
+		config.setWindowedMode(Utils.SCREEN_WIDTH, Utils.SCREEN_HEIGHT);
 		new Lwjgl3Application(new MyGdxGame(), config);
 	}
 }

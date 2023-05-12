@@ -16,16 +16,15 @@ public class Asteroids {
     private Sprite sprite;
     private int size = 80;
 
-    public static void createRandomAsteroids(ArrayList<Asteroids> asteroids) {
-        for (int i = 0; i < Utils.getRandomNumber(6)+1; i++) {
+    public static void createRandomAsteroids(ArrayList<Asteroids> asteroids, int limit) {
+        for (int i = 0; i < Utils.getRandomNumber(limit)+1; i++) {
             asteroids.add(new Asteroids());
         }
     }
 
-
     public Asteroids() {
-        x = Utils.getRandomNumber(640);
-        y = Utils.getRandomNumber(480);
+        x = Utils.getRandomNumber(Utils.SCREEN_WIDTH);
+        y = Utils.getRandomNumber(Utils.SCREEN_HEIGHT);
         directionY = (float) Math.sin(Utils.getRandomNumber(Math.PI));
         directionX = (float) Math.cos(Utils.getRandomNumber(Math.PI));
         velocity = Utils.getRandomNumber(2) + 1;
@@ -37,7 +36,7 @@ public class Asteroids {
         this.size = size;
     }
 
-    public Asteroids(int size, float y, float x) {
+    public Asteroids(int size, float x, float y) {
         directionY = (float) Math.sin(Utils.getRandomNumber(Math.PI));
         directionX = (float) Math.cos(Utils.getRandomNumber(Math.PI));
         velocity = Utils.getRandomNumber(2) + 1;
